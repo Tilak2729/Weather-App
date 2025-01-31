@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary px-3">
+        <a class="navbar-brand" href="#">Weather App</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <select id="quickSearch" class="form-select">
+                        <option value="">Quick Search</option>
+                        <option value="Delhi">AHmednagar</option>
+                        <option value="Prayagraj">Allahabad</option>
+                        <option value="Mumbai">Mumbai</option>
+                    </select>
+                </li>
+            </ul>
+            <form class="d-flex" onsubmit="fetchWeather(); return false;">
+                <input class="form-control me-2" type="text" id="cityInput" placeholder="Search your city...">
+                <button class="btn btn-light" type="submit"><i class="bi bi-search"></i></button>
+            </form>
+        </div>
+    </nav>
+    <div class="container text-center mt-5">
+        <h2 id="cityName">City Name</h2>
+        <div class="row row-cols-1 row-cols-md-3 g-4 mt-3">
+            <div class="col">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h4><i class="bi bi-thermometer-high"></i> Temperature</h4>
+                        <p id="temperature"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h4><i class="bi bi-cloud-drizzle"></i> Humidity</h4>
+                        <p id="humidity"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h4><i class="bi bi-wind"></i> Wind Speed</h4>
+                        <p id="windSpeed"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h4><i class="bi bi-cloud"></i> Cloud Cover</h4>
+                        <p id="cloudCover"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h4><i class="bi bi-cloud-sun-rain"></i> Air Quality</h4>
+                        <p id="airQuality"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        async function fetchWeather() {
+            const city = document.getElementById('cityInput').value || document.getElementById('quickSearch').value;
+            if (!city) return alert("Please enter a city name!");
+            
+            const weatherUrl = `https://api.weatherapi.com/v1/current.json?key=8e57ac581d594690a2c51849253101&q=${city}&aqi=yes`;
+            try {
+                const weatherResponse = await fetch(weatherUrl);
+                const weatherData = await weatherResponse.json();
+                
+                document.getElementById('cityName').innerText = weatherData.location.name;
+                document.getElementById('temperature').innerText = weatherData.current.temp_c + "°C";
+                document.getElementById('humidity').innerText = weatherData.current.humidity + "%";
+                document.getElementById('windSpeed').innerText = weatherData.current.wind_kph + " km/h";
+                document.getElementById('cloudCover').innerText = weatherData.current.cloud + "%";
+                document.getElementById('airQuality').innerText = weatherData.current.air_quality.pm2_5 ?? "N/A";
+            } catch (error) {
+                console.error("Error fetching weather data:", error);
+            }
+        }
+        
+        document.getElementById('quickSearch').addEventListener('change', fetchWeather);
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+
+

@@ -1,0 +1,138 @@
+/* General styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #aee1f7; /* Light blue background */
+    margin: 0;
+    padding: 0;
+}
+
+/* Navbar styling */
+.navbar {
+    background-color: #162143; /* Dark blue background for navbar */
+}
+
+.navbar .navbar-brand {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: #fff !important;
+}
+
+.navbar .form-select {
+    background-color: #6c757d; /* Subtle gray for dropdown */
+    color: white;
+    border: none;
+}
+
+.navbar .form-select:focus {
+    box-shadow: none;
+}
+
+.navbar .btn-light {
+    background-color: #fff;
+    color: #1d2f65;
+}
+
+.navbar .btn-light:hover {
+    background-color: #e3e6f1;
+    border: none;
+}
+
+/* Container and layout */
+.container {
+    background-color: #e6f3ff; /* Light blue for the container */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(161, 46, 46, 0.1);
+    margin-top: 40px;
+}
+
+/* City name styling */
+#cityName {
+    font-size: 4rem;
+    font-weight: bold;
+    color: #141825;
+    margin-bottom: 20px;
+}
+
+/* Weather Cards */
+.card {
+    border-radius: 12px;
+    background-color: #f8f9fc;
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-10px); /* Hover effect to raise cards */
+}
+
+.card-body {
+    text-align: center;
+    padding: 20px;
+}
+
+/* Icons */
+.card-body i {
+    font-size: 2rem;
+    color: #242f55;
+}
+
+/* Text in cards */
+.card-body h4 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.card-body p {
+    font-size: 1.1rem;
+    color: #130f0f;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .row-cols-md-3 {
+        grid-template-columns: 1fr; /* Stacks the cards vertically on smaller screens */
+    }
+}
+
+@media (max-width: 576px) {
+    #cityName {
+        font-size: 1.6rem;
+    }
+
+    .navbar .navbar-brand {
+        font-size: 1.4rem;
+    }
+}
+
+/* Additional Styling for the select dropdown */
+#quickSearch {
+    border-radius: 15px;
+    background-color: #0e1e38;
+    color: #fffbfb;
+}
+
+/* Input field for city search */
+#cityInput {
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+#cityInput:focus {
+    border-color: #212942;
+    box-shadow: 0 0 5px rgba(78, 115, 223, 0.5);
+}
+
+/* Smooth background color transitions */
+.card, .navbar, .container {
+    transition: all 0.3s ease;
+}
+
+
+
+
+
